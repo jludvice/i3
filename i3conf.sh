@@ -9,11 +9,7 @@ sudo add-apt-repository ppa:moka/stable
 sudo add-apt-repository ppa:ravefinity-project/ppa
 sudo apt-get update
 
-#Install i3 and i3blocks from https://github.com/Airblader/i3blocks-gaps https://github.com/Airblader/i3
-
 sudo apt-get install rofi compton lxappearance feh scrot imagemagick arandr xfce4-power-manager thunar git cpanminus libgtk2-perl libgtk3-perl geany gsimplecal galculator suckless-tools libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev sysstat moka-icon-theme ambiance-blackout-flat-colors ruby-ronn
-#sudo apt-get purge dunst
-mkdir ~/.fonts
 
 cd /tmp
 
@@ -57,7 +53,7 @@ cpanm -n Linux::DesktopFiles --sudo
 cpanm -n Data::Dump --sudo
 git clone --depth 1 https://github.com/trizen/menutray
 cd menutray
-mv menutray ~/.i3
+mv menutray ~/.config/i3
 mkdir ~/.config/menutray
 cp schema.pl ~/.config/menutray/
 
