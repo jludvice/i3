@@ -7,7 +7,13 @@ sudo add-apt-repository ppa:moka/stable
 
 # Ambiance blackout flat theme
 sudo add-apt-repository ppa:ravefinity-project/ppa
+
+# Arc theme
+echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_15.10/ /' >> /etc/apt/sources.list.d/arc-theme.list
+wget http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_15.10/Release.key
+sudo apt-key add - < Release.key
 sudo apt-get update
+sudo apt-get install arc-theme
 
 sudo apt-get install rofi compton lxappearance feh scrot imagemagick arandr xfce4-power-manager thunar git cpanminus libgtk2-perl libgtk3-perl geany gsimplecal galculator suckless-tools libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev sysstat moka-icon-theme ambiance-blackout-flat-colors ruby-ronn
 
