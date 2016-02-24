@@ -73,7 +73,7 @@ bindsym $mod+w kill
 bindsym control+mod1+l exec /home/avano/lockmyi3.sh
 
 # start dmenu (a program launcher)
-bindsym $mod+Return exec rofi -show run -lines 3 -eh 2 -width 100 -padding 350 -opacity "85" -bw 0 -bc "$base01" -bg "$base01" -fg "$base07" -hlbg "$base01" -hlfg "#9575cd" -font "Source Code Pro Regular 18"
+bindsym $mod+Return exec i3-dmenu-desktop --dmenu='rofi -dmenu -p "run:" -show run -lines 3 -eh 2 -width 100 -padding 350 -opacity "85" -bw 0 -bc "$base01" -bg "$base01" -fg "$base07" -hlbg "$base01" -hlfg "#9575cd" -font "Source Code Pro Regular 18"'
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -237,7 +237,8 @@ exec_always feh --bg-scale /home/avano/Pictures/random.jpg
 exec nm-applet
 exec /usr/bin/gnome-settings-daemon
 exec setxkbmap -layout 'us,sk' -option 'grp:alt_shift_toggle'
-exec --no-startup-id /home/avano/.config/i3/menutray -g -i
+#exec --no-startup-id sleep 10s; /home/avano/.config/i3/menutray -g -i
+
 # Force window locations
 # xprop -> WM_CLASS -> second value
 # assign [class="NAME"] $w4

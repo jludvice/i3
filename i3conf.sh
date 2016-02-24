@@ -62,7 +62,8 @@ cp schema.pl ~/.config/menutray/
 
 cp $BASE_DIR/config ~/.config/i3/
 cp $BASE_DIR/i3blocks.conf ~/.config/i3/
-cp $BASE_DIR/i3exit ~/.config/i3/
+cp $BASE_DIR/cpu_usage ~/.config/i3/
+cp $BASE_DIR/battery.py ~/.config/i3/
 cp $BASE_DIR/*.sh ~/.config/i3/
 cp $BASE_DIR/.gtkrc-2.0 ~
 cp -r $BASE_DIR/.config ~
