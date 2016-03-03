@@ -5,16 +5,15 @@ BASE_DIR=`pwd`
 
 sudo add-apt-repository ppa:moka/stable
 
-# Ambiance blackout flat theme
-sudo add-apt-repository ppa:ravefinity-project/ppa
-
 # Arc theme
 sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_15.10/ /' >> /etc/apt/sources.list.d/arc-theme.list"
 wget http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_15.10/Release.key
 sudo apt-key add - < Release.key
 sudo apt-get update
 
-sudo apt-get install rofi compton lxappearance feh scrot imagemagick arandr xfce4-power-manager thunar git cpanminus libgtk2-perl libgtk3-perl geany gsimplecal galculator suckless-tools libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev sysstat moka-icon-theme ambiance-blackout-flat-colors ruby-ronn arc-theme acpi
+sudo apt-get install dunst rofi compton lxappearance feh scrot imagemagick arandr xfce4-power-manager thunar git cpanminus libgtk2-perl libgtk3-perl geany gsimplecal galculator suckless-tools libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev sysstat moka-icon-theme ruby-ronn arc-theme acpi autoconf libxcb-dpms0-dev libpam-dev libcairo-dev dunst
+
+sudo apt-get remove notify-osd
 
 cd /tmp
 
@@ -27,7 +26,6 @@ curl -L -o ssf.zip https://github.com/supermarin/YosemiteSanFranciscoFont/archiv
 unzip awesome.zip
 unzip ssf.zip
 unzip sourcecodepro.zip
-unzip i3blockscontrib.zip 
 
 mkdir ~/.fonts
 
@@ -49,21 +47,34 @@ cd i3blocks-gaps
 make clean all
 sudo make install
 
+# volnoti
+cd /tmp
+git clone git://github.com/davidbrazdil/volnoti.git volnoti
+cd volnoti
+rm -rf ./value-client-stub.h && make value-client-stub.h dbus-binding-tool --prefix=volume_object --mode=glib-client specs.xml > value-client-stub.h
+rm -rf ./value-daemon-stub.h && make value-daemon-stub.h dbus-binding-tool --prefix=volume_object --mode=glib-server specs.xml > value-daemon-stub.h
+./prepare.sh && ./configure --prefix=/usr && make && sudo make install
+
+# Custom i3lock
+cd /tmp
+git clone https://github.com/Lixxia/i3lock
+cd i3lock
+make
+sudo make install
+
 mkdir -pv ~/.config/i3
+mkdir -pv ~/.config/dunst
 
-# menutray
-cpanm -n Linux::DesktopFiles --sudo
-cpanm -n Data::Dump --sudo
-git clone --depth 1 https://github.com/trizen/menutray
-cd menutray
-mv menutray ~/.config/i3
-mkdir ~/.config/menutray
-cp schema.pl ~/.config/menutray/
-
-cp $BASE_DIR/config ~/.config/i3/
-cp $BASE_DIR/i3blocks.conf ~/.config/i3/
-cp $BASE_DIR/cpu_usage ~/.config/i3/
-cp $BASE_DIR/battery.py ~/.config/i3/
-cp $BASE_DIR/*.sh ~/.config/i3/
+ln -s $BASE_DIR/config /home/avano/.config/i3/config
+ln -s $BASE_DIR/i3blocks.conf /home/avano/.config/i3/i3blocks.conf
+ln -s $BASE_DIR/cpu_usage /home/avano/.config/i3/cpu_usage
+ln -s $BASE_DIR/battery.sh/home/avano/.config/i3/battery.sh
+ln -s $BASE_DIR/date.sh /home/avano/.config/i3/date.sh
+ln -s $BASE_DIR/memory.sh /home/avano/.config/i3/memory.sh
+ln -s $BASE_DIR/toggle-xkbmap.sh /home/avano/.config/i3/toggle-xkbmap.sh
+ln -s $BASE_DIR/volume /home/avano/.config/i3/volume
+ln -s $BASE_DIR/volume_control.sh /home/avano/.config/i3/volume_control.sh
+ln -s $BASE_DIR/i3lock.sh /home/avano/.config/i3/i3lock.sh
+ln -s $BASE_DIR/dunstrc /home/avano/.config/dunst/dunstrc
 cp $BASE_DIR/.gtkrc-2.0 ~
 cp -r $BASE_DIR/.config ~

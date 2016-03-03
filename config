@@ -13,41 +13,30 @@ set $mod Mod4
 
 default_orientation vertical
 hide_edge_borders both
-workspace_auto_back_and_forth yes
-set $w1 output VGA1
-set $w2 output VGA1
-set $w3 output VGA1
-set $w4 output LVDS1
+
+# Monitors
+exec --no-startup-id xrandr --output VIRTUAL1 --off --output DP3 --off --output DP2 --off --output DP1 --off --output HDMI3 --off --output HDMI2 --off --output HDMI1 --off --output LVDS1 --mode 1600x900 --pos 1920x180 --rotate normal --output VGA1 --mode 1920x1080 --primary --pos 0x0 --rotate normal
+
 # Colors
-set $BG-COLOR              #333333
-set $INACTIVE-BG-COLOR     #333333
-set $TEXT-COLOR            #f3f4f5
-set $INACTIVE-TEXT-COLOR   #676e7d
-set $URGENT-BG-COLOR       #e53935
-set $RED                   #ce3a3a
 set $base00 #101218
-  set $base01 #1f222d
-  set $base02 #252936
-  set $base03 #7780a1
-  set $base04 #C0C5CE
-  set $base05 #d1d4e0
-  set $base06 #C9CCDB
-  set $base07 #ffffff
-  set $base08 #ee829f
-  set $base09 #f99170
-  set $base0A #ffefcc
-  set $base0B #a5ffe1
-  set $base0C #97e0ff
-  set $base0D #97bbf7
-  set $base0E #c0b7f9
-  set $base0F #fcc09e
+set $base01 #1f222d
+set $base02 #252936
+set $base03 #7780a1
+set $base04 #C0C5CE
+set $base05 #d1d4e0
+set $base06 #C9CCDB
+set $base07 #ffffff
+set $base08 #ee829f
+set $base09 #f99170
+set $base0A #ffefcc
+set $base0B #a5ffe1
+set $base0C #97e0ff
+set $base0D #97bbf7
+set $base0E #c0b7f9
+set $base0F #fcc09e
 
-exec --no-startup-id xrandr --output VIRTUAL1 --off --output DP3 --off --output DP2 --off --output DP1 --off --output HDMI3 --off --output HDMI2 --off --output HDMI1 --off --output LVDS1 --mode 1600x900 --pos 1920x180 --rotate normal --output VGA1 --mode 1920x1080 --pos 0x0 --rotate normal
-# Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Source Code Pro Regular 9
-
-hide_edge_borders both
+font pango:Source Code Pro Regular 11, FontAwesome 9
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -64,16 +53,16 @@ hide_edge_borders both
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+t exec i3-sensible-terminal
+bindsym $mod+t exec terminator
 
 # kill focused window
 bindsym $mod+w kill
 
 # i3lock
-bindsym control+mod1+l exec /home/avano/lockmyi3.sh
+bindsym control+mod1+l exec /home/avano/.config/i3/i3lock.sh
 
-# start dmenu (a program launcher)
-bindsym $mod+Return exec i3-dmenu-desktop --dmenu='rofi -dmenu -p "run:" -show run -lines 3 -eh 2 -width 100 -padding 350 -opacity "85" -bw 0 -bc "$base01" -bg "$base01" -fg "$base07" -hlbg "$base01" -hlfg "#9575cd" -font "Source Code Pro Regular 18"'
+# start rofi
+bindsym $mod+Return exec i3-dmenu-desktop --dmenu='rofi -dmenu -p "run:" -show run -lines 3 -eh 2 -width 100 -padding 450 -opacity "85" -bw 0 -bc "$base01" -bg "$base01" -fg "$base07" -hlbg "$base01" -hlfg "#9575cd" -font "Source Code Pro Regular 18"'
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -111,12 +100,12 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+shift+x fullscreen toggle
+bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+#bindsym $mod+s layout stacking
 #bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+#bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+space floating toggle
@@ -131,7 +120,10 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 bindsym Print exec gnome-screenshot -c
-bindsym alt+Print exec gnome-screenshot -w -c
+bindsym Mod1+Print exec gnome-screenshot -w -c
+
+# Toggle keyboard
+bindcode Shift+64 exec --no-startup-id /home/avano/.config/i3/toggle-xkbmap.sh
 
 # switch to workspace
 set $w1 "1: "
@@ -143,7 +135,7 @@ set $w6 "6"
 set $w7 "7"
 set $w8 "8"
 set $w9 "9"
-set $w10 "10"
+set $w10 "0: "
 
 bindsym $mod+1 workspace $w1
 bindsym $mod+2 workspace $w2
@@ -154,7 +146,7 @@ bindsym $mod+6 workspace $w6
 bindsym $mod+7 workspace $w7
 bindsym $mod+8 workspace $w8
 bindsym $mod+9 workspace $w9
-bindsym $mod+0 workspace $w10
+bindsym $mod+grave workspace $w10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $w1
@@ -166,7 +158,7 @@ bindsym $mod+Shift+6 move container to workspace $w6
 bindsym $mod+Shift+7 move container to workspace $w7
 bindsym $mod+Shift+8 move container to workspace $w8
 bindsym $mod+Shift+9 move container to workspace $w9
-bindsym $mod+Shift+0 move container to workspace $w10
+bindsym $mod+Shift+grave move container to workspace $w10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -204,25 +196,25 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+	height 25
         status_command i3blocks -c /home/avano/.config/i3/i3blocks.conf
-#status_command /home/avano/.local/bin/i3bf -p /home/avano/.local/bin
-	font pango:System San Francisco Display 10
+	font pango:System San Francisco Display 10, FontAwesome 10
 	colors {
-separator $base03
-      background $base01
-      statusline $base05
-#                        border  background text
-      focused_workspace  $base01 $base01    $base07
-      active_workspace   $base01 $base02    $base03
-      inactive_workspace $base01 $base01    $base03
-      urgent_workspace   $base01 $base01    $base08	
-}
+		separator $base03
+		background $base01
+		statusline $base05
+#               	           border  background text
+		focused_workspace  $base01 $base01    $base07
+		active_workspace   $base01 $base02    $base03
+		inactive_workspace $base01 $base01    $base03
+		urgent_workspace   $base01 $base01    $base08
+	}
 }
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id /home/avano/.config/i3/volume_control.sh up
+bindsym XF86AudioLowerVolume exec --no-startup-id /home/avano/.config/i3/volume_control.sh down
+bindsym XF86AudioMute exec --no-startup-id /home/avano/.config/i3/volume_control.sh mute
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
@@ -231,26 +223,45 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
 
-# Exec
+# Startup
 exec_always compton -f
-exec_always feh --bg-scale /home/avano/Pictures/random.jpg
-exec nm-applet
-exec /usr/bin/gnome-settings-daemon
-exec setxkbmap -layout 'us,sk' -option 'grp:alt_shift_toggle'
-#exec --no-startup-id sleep 10s; /home/avano/.config/i3/menutray -g -i
+exec_always feh --bg-fill /home/avano/Pictures/12921596304_34a027a7dd_o.jpg
+exec --no-startup-id nm-applet
+exec --no-startup-id /usr/bin/gnome-settings-daemon
+exec --no-startup-id xchat
+exec --no-startup-id pidgin
+exec --no-startup-id i3-msg 'workspace $w4; split h; append_layout /home/avano/.config/i3/workspace-4.json; split v'
+exec --no-startup-id google-chrome-stable
+exec --no-startup-id volnoti
+exec --no-startup-id i3-msg 'workspace $w1; exec terminator; focus'
 
-# Force window locations
+# Window locations
 # xprop -> WM_CLASS -> second value
-# assign [class="NAME"] $w4
+assign [class="google-chrome"] $w2
+assign [class="jetbrains-idea-ce"] $w3
+assign [class="Pidgin"] $w4
+assign [class="Xchat"] $w4
+assign [instance="mc"] $w10
+# Window properties
 for_window [class="Thunar"] floating enable
-#                       border  background text    indicator
+for_window [class="Galculator"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [class="Gitg"] floating enable
+# Colors                border  background text    indicator
 client.focused          $base01 $base01    $base07 $base0F
-  client.focused_inactive $base02 $base02    $base03 $base0F
-  client.unfocused        $base02 $base02    $base03 $base0F
-  client.urgent           $base02 $base08    $base00 $base0F
+client.focused_inactive $base02 $base02    $base03 $base0F
+client.unfocused        $base02 $base02    $base03 $base0F
+client.urgent           $base02 $base08    $base00 $base0F
 
-set $sysmenu "system:  [r]eload  [l]ogout  [p]oweroff  re[b]oot"
-bindsym $mod+m      mode $sysmenu
+# Output
+workspace $w10 output VGA1
+workspace $w1 output VGA1
+workspace $w2 output VGA1
+workspace $w3 output VGA1
+workspace $w4 output LVDS1
+
+set $sysmenu "system:  [R]eload  [L]ogout  [P]oweroff  re[B]oot"
+bindsym $mod+shift+x mode $sysmenu
 
 mode $sysmenu {
     bindsym r         restart
@@ -260,4 +271,3 @@ mode $sysmenu {
     bindsym Return    mode "default"
     bindsym Escape    mode "default"
 }
-#reddit some useful i3 mode menus
