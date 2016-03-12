@@ -13,6 +13,8 @@ set $mod Mod4
 
 default_orientation vertical
 hide_edge_borders both
+floating_minimum_size 80 x 80
+floating_maximum_size -1 x -1
 
 # Monitors
 exec --no-startup-id xrandr --output VIRTUAL1 --off --output DP3 --off --output DP2 --off --output DP1 --off --output HDMI3 --off --output HDMI2 --off --output HDMI1 --off --output LVDS1 --mode 1600x900 --pos 1920x180 --rotate normal --output VGA1 --mode 1920x1080 --primary --pos 0x0 --rotate normal
@@ -241,9 +243,10 @@ assign [class="google-chrome"] $w2
 assign [class="jetbrains-idea-ce"] $w3
 assign [class="Pidgin"] $w4
 assign [class="Xchat"] $w4
-assign [instance="mc"] $w10
+assign [class="Nautilus"] $w10
 # Window properties
 for_window [class="Thunar"] floating enable
+for_window [class="Nautilus"] floating enable
 for_window [class="Galculator"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [class="Gitg"] floating enable

@@ -11,9 +11,12 @@ wget http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_15.10/Rele
 sudo apt-key add - < Release.key
 sudo apt-get update
 
-sudo apt-get install dunst rofi compton lxappearance feh scrot imagemagick arandr xfce4-power-manager thunar git cpanminus libgtk2-perl libgtk3-perl geany gsimplecal galculator suckless-tools libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev sysstat moka-icon-theme ruby-ronn arc-theme acpi autoconf libxcb-dpms0-dev libpam-dev libcairo-dev dunst
+sudo apt-get install dunst rofi compton lxappearance feh scrot imagemagick arandr xfce4-power-manager thunar git cpanminus libgtk2-perl libgtk3-perl geany gsimplecal galculator suckless-tools libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev sysstat moka-icon-theme ruby-ronn arc-theme acpi autoconf libxcb-dpms0-dev libpam-dev libcairo-dev dunst libdbus-1-dev libdbus-glib-1-dev gtk+-2.0-dev
 
 sudo apt-get remove notify-osd
+
+# Fix nautilus
+gsettings set org.gnome.desktop.background show-desktop-icons false
 
 cd /tmp
 
@@ -50,7 +53,7 @@ sudo make install
 # volnoti
 cd /tmp
 git clone git://github.com/davidbrazdil/volnoti.git volnoti
-cd volnoti
+cd volnoti/src
 rm -rf ./value-client-stub.h && make value-client-stub.h dbus-binding-tool --prefix=volume_object --mode=glib-client specs.xml > value-client-stub.h
 rm -rf ./value-daemon-stub.h && make value-daemon-stub.h dbus-binding-tool --prefix=volume_object --mode=glib-server specs.xml > value-daemon-stub.h
 ./prepare.sh && ./configure --prefix=/usr && make && sudo make install
