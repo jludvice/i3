@@ -132,11 +132,11 @@ set $w1 "1: "
 set $w2 "2: "
 set $w3 "3: "
 set $w4 "4: "
-set $w5 "5"
-set $w6 "6"
-set $w7 "7"
-set $w8 "8"
-set $w9 "9"
+set $w5 "5: "
+set $w6 "6: "
+set $w7 "7: "
+set $w8 "8: "
+set $w9 "9: "
 set $w10 "0: "
 
 bindsym $mod+1 workspace $w1
@@ -199,7 +199,8 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
 	height 25
-        status_command i3blocks -c /home/avano/.config/i3/i3blocks.conf
+        #status_command i3blocks -c /home/avano/.config/i3/i3blocks.conf
+	status_command /home/avano/work/git/github/i3/i3status.sh
 	font pango:System San Francisco Display 10, FontAwesome 10
 	colors {
 		separator $base03

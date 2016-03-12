@@ -1,0 +1,104 @@
+out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+
+# Update interval in seconds
+update_interval 1.0
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Shortens units to a single character (kiB->k, GiB->G, etc.). Default is off.
+short_units yes
+
+# How strict should if_up be when testing an interface for being up?
+# The value is one of up, link or address, to check for the interface
+# being solely up, being up and having link or being up, having link
+# and an assigned IP address. 
+if_up_strictness address
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+# use_spacer should have an argument of left, right, or none
+use_spacer left
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale no
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 2
+
+# Stuff after 'TEXT' will be formatted on screen
+TEXT
+
+# JSON for i3bar
+[
+# CPU
+{"markup":"pango", "full_text" : "<span color='\#7780a1'></span>", "separator" : false, "separator_block_width":0},
+{"markup":"pango", "full_text" : "${cpu}%", "align":"center","color" : \
+${if_match ${cpu}<45}"\#ffffff"${else}${if_match ${cpu}<80}"\#ffffff"${else}"\#ff0000"${endif}${endif}, "min_width":"100%","separator":false},
+
+# RAM
+{"markup":"pango", "full_text" : "<span color='\#7780a1'></span>", "separator" : false, "separator_block_width":0},
+{"markup":"pango", "full_text" : "${mem}" ,"align":"center", "color" : \
+${if_match ${memperc}<90}"\#ffffff"${else}"\#ff0000"${endif},"min_width":"22.22G","separator":false},
+
+# Disk I/O
+{"markup":"pango", "full_text" : "<span color='\#7780a1'>⇄</span>", "separator" : false, "separator_block_width":0},
+{"markup":"pango", "full_text" : " ${diskio /dev/sda} " , "align":"center","min_width":"100.00K", "color" :
+"\#ffffff","separator":false},
+
+# Free storage space in /home
+{"markup":"pango", "full_text" : "<span color='\#7780a1'></span>", "separator" : false, "separator_block_width":0},
+{"markup":"pango", "full_text" : "${fs_free /home} Free" , "color" : "\#ffffff","separator":false},
+
+# Networking
+{"markup":"pango", "full_text" : "<span color='\#7780a1'></span>", "separator" : false, "separator_block_width":0},
+${if_up wlan0} {"markup":"pango", "full_text" : "${wireless_essid wlan0}" , "color" : "\#ffffff",
+"separator":false}, ${else}\
+	${if_up eth0} {"markup":"pango", "full_text" : "${addr eth0}", "color" : "\#FFFFFF","separator":false}, ${else}\
+	${endif}\
+${endif}\
+
+# Down speed
+{"markup":"pango", "full_text" : "<span color='\#7780a1'></span>", "separator" : false, "separator_block_width":0},
+${if_up eth0}{"markup":"pango", "full_text":"${downspeed eth0}","color":"\#FFFFFF","min_width":"99.99b",
+"separator":false},${else}\
+	${if_up wlan0}{"markup":"pango", "full_text":"${downspeed wlan0}","color":"\#FFFFFF","min_width":"99.99b",
+	"separator":false},
+	${endif}\
+${endif}\
+
+# Up speed
+{"markup":"pango", "full_text" : "<span color='\#7780a1'></span>", "separator" : false, "separator_block_width":0},
+${if_up eth0}{"markup":"pango", "full_text":"${upspeed eth0}","color":"\#FFFFFF","min_width":"99.99b",
+"separator":false},${else}\
+	${if_up wlan0}{"markup":"pango", "full_text":"${upspeed wlan0}","color":"\#FFFFFF","min_width":"99.99b","separator":false},
+	${endif}\
+${endif}\
+
+# Battery
+{"markup":"pango","full_text": "${exec /home/avano/.config/i3/battery.sh}", "separator":false},
+
+# Volume
+{"markup":"pango", "full_text" : "<span color='\#7780a1'></span>", "separator" : false, "separator_block_width":0},
+{"markup":"pango", "full_text" : "${exec /home/avano/.config/i3/volume}", "color" : "\#ffffff",
+"min_width":"MUTE ", "separator":false},
+
+# Keyboard layout
+{"markup":"pango", "full_text" : "<span color='\#7780a1'></span>", "separator" : false, "separator_block_width":0},
+{"markup":"pango", "full_text" : "${exec setxkbmap -query | grep layout | tail -c 3} ", "color" : "\#ffffff",
+"separator":false},
+
+# Date
+{"markup":"pango", "full_text" : "<span color='\#7780a1'></span>", "separator" : false, "separator_block_width":0},
+{"markup":"pango", "full_text" : "${exec date +'%d.%m.%Y'}" , "color" : "\#ffffff","separator":false},
+
+# Time
+{"markup":"pango", "full_text" : "<span color='\#7780a1'></span>", "separator" : false, "separator_block_width":0},
+{"markup":"pango", "full_text" : "${time %H:%M:%S}" , "color" : "\#ffffff","separator":false}
+
+],

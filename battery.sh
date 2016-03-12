@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-LIGHTNING="<span color='yellow' font='FontAwesome'></span>"
-PLUG="<span font='FontAwesome'></span>"
+LIGHTNING="<span color='#7780a1' font='FontAwesome'></span>"
+PLUG="<span font='FontAwesome' color='#7780a1'></span>"
 
 function handleFull {
 	printf "100%%"

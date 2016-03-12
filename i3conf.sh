@@ -79,5 +79,7 @@ ln -s $BASE_DIR/volume /home/avano/.config/i3/volume
 ln -s $BASE_DIR/volume_control.sh /home/avano/.config/i3/volume_control.sh
 ln -s $BASE_DIR/i3lock.sh /home/avano/.config/i3/i3lock.sh
 ln -s $BASE_DIR/dunstrc /home/avano/.config/dunst/dunstrc
+ln -s $BASE_DIR/conkyrc /home/avano/.config/i3/conkyrc
+ln -s $BASE_DIR/i3status.sh /home/avano/.config/i3/i3status.sh
 cp $BASE_DIR/.gtkrc-2.0 ~
 cp -r $BASE_DIR/.config ~
