@@ -54,8 +54,11 @@ sudo make install
 cd /tmp
 git clone git://github.com/davidbrazdil/volnoti.git volnoti
 cd volnoti/src
-rm -rf ./value-client-stub.h && make value-client-stub.h dbus-binding-tool --prefix=volume_object --mode=glib-client specs.xml > value-client-stub.h
-rm -rf ./value-daemon-stub.h && make value-daemon-stub.h dbus-binding-tool --prefix=volume_object --mode=glib-server specs.xml > value-daemon-stub.h
+rm -rf ./value-client-stub.h && make value-client-stub.h 
+dbus-binding-tool --prefix=volume_object --mode=glib-client specs.xml > value-client-stub.h
+rm -rf ./value-daemon-stub.h && make value-daemon-stub.h 
+dbus-binding-tool --prefix=volume_object --mode=glib-server specs.xml > value-daemon-stub.h
+cd /tmp/volnoti
 ./prepare.sh && ./configure --prefix=/usr && make && sudo make install
 
 # Custom i3lock
