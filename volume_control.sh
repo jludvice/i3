@@ -9,8 +9,8 @@ function change {
 	amixer set Master $1
 }
 
-[[ "$1" == "up" ]] && change 15%+
-[[ "$1" == "down" ]] && change 15%-
+[[ "$1" == "up" ]] && change 5%+
+[[ "$1" == "down" ]] && change 5%-
 [[ "$1" == "mute" ]] && amixer -D pulse sset Master Playback Switch toggle
 
 VOL_INFO=$(amixer get Master | grep -E '^\s+Mono')

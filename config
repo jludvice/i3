@@ -124,7 +124,9 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+# Take a screenshot and save it to the clipboard
 bindsym Print exec gnome-screenshot -c
+# Take a screenshot of current window and save it to the clipboard
 bindsym Mod1+Print exec gnome-screenshot -w -c
 
 # Toggle keyboard
