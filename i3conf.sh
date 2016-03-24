@@ -1,6 +1,15 @@
 #!/bin/bash
 BASE_DIR=`pwd`
 
+if [ "$#" -gt 1 ]; then
+    echo "Illegal number of parameters"
+    exit 9
+fi
+
+if [ "$#" -eq 1 ]; then
+    sed -i "s#avano#$1#g" $BASE_DIR/*
+fi
+
 # Moka icons
 
 sudo add-apt-repository ppa:moka/stable
@@ -84,5 +93,6 @@ ln -s $BASE_DIR/i3lock.sh /home/avano/.config/i3/i3lock.sh
 ln -s $BASE_DIR/dunstrc /home/avano/.config/dunst/dunstrc
 ln -s $BASE_DIR/conkyrc /home/avano/.config/i3/conkyrc
 ln -s $BASE_DIR/i3status.sh /home/avano/.config/i3/i3status.sh
+ln -s $BASE_DIR/workspace-4.json /home/avano/.config/i3/workspace-4.json
 cp $BASE_DIR/.gtkrc-2.0 ~
 cp -r $BASE_DIR/.config ~

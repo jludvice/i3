@@ -1,0 +1,66 @@
+{
+    "layout": "splitv",
+    "border": "normal",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 273,
+       "width": 1600,
+       "x": 0,
+       "y": 311
+    },
+    "name": "XChat",
+    "percent": 0.433333333333333,
+    "swallows": [
+       {
+        "class": "^Xchat$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    "layout": "splitv",
+    "border": "normal",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 847,
+       "width": 765,
+       "x": 0,
+       "y": 0
+    },
+    "name": "Conversation",
+    "percent": 0.433333333333333,
+    "swallows": [
+       {
+        "class": "^Pidgin$",
+        "instance": "^Pidgin$",
+        "window_role": "^conversation$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    "layout": "splitv",
+    "border": "normal",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 275,
+       "width": 1600,
+       "x": 0,
+       "y": 604
+    },
+    "name": "Buddy List",
+    "percent": 0.133333333333333,
+    "swallows": [
+       {
+        "class": "^Pidgin$",
+        "instance": "^Pidgin$",
+        "window_role": "^buddy_list$"
+       }
+    ],
+    "type": "con"
+}
