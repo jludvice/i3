@@ -39,16 +39,17 @@ TEXT
 # CPU
 {"markup":"pango", "full_text" : "<span color='\#7780a1'></span>", "separator" : false, "separator_block_width":0},
 {"markup":"pango", "full_text" : "${cpu}%", "align":"center","color" : \
-${if_match ${cpu}<45}"\#ffffff"${else}${if_match ${cpu}<80}"\#ffffff"${else}"\#ff0000"${endif}${endif}, "min_width":"100%","separator":false},
+${if_match ${cpu}<49}"\#ffffff"${else}${if_match ${cpu}<80}"\#d7e63b"${else}"\#ee829f"${endif}${endif}, "min_width":"100%","separator":false},
 
 # RAM
 {"markup":"pango", "full_text" : "<span color='\#7780a1'></span>", "separator" : false, "separator_block_width":0},
 {"markup":"pango", "full_text" : "${mem}" ,"align":"center", "color" : \
-${if_match ${memperc}<90}"\#ffffff"${else}"\#ff0000"${endif},"min_width":"22.22G","separator":false},
+${if_match ${memperc}<49}"\#ffffff"${else}${if_match ${memperc}<80}"\#d7e63b"${else}"\#ee829f"${endif}${endif},"min_width":"22.22G",
+"separator":false},
 
 # Disk I/O
 {"markup":"pango", "full_text" : "<span color='\#7780a1'>⇄</span>", "separator" : false, "separator_block_width":0},
-{"markup":"pango", "full_text" : " ${diskio /dev/sda} " , "align":"center","min_width":"100.00K", "color" :
+{"markup":"pango", "full_text" : "${diskio /dev/sda}" , "align":"center","min_width":"100.00K", "color" :
 "\#ffffff","separator":false},
 
 # Free storage space in /home
@@ -60,6 +61,7 @@ ${if_match ${memperc}<90}"\#ffffff"${else}"\#ff0000"${endif},"min_width":"22.22G
 ${if_up wlan0} {"markup":"pango", "full_text" : "${wireless_essid wlan0}" , "color" : "\#ffffff",
 "separator":false}, ${else}\
 	${if_up eth0} {"markup":"pango", "full_text" : "${addr eth0}", "color" : "\#FFFFFF","separator":false}, ${else}\
+		{"markup":"pango", "full_text" : "Disconnected", "separator": false, "color" : "\#ee829f"},
 	${endif}\
 ${endif}\
 
