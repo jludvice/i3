@@ -48,7 +48,6 @@ function update {
 		exit 1
 	fi
 	echo "$WEATHER_INFO" >> /tmp/weather.xml
-	#WEATHER_INFO=$(cat /home/avano/work/git/github/i3/weather.xml)
 	ICON=$(echo $(get_icon "$WEATHER_INFO"))
 	TEMP=$(echo $(get "$WEATHER_INFO" "//current/temperature/@value"))
 	STATUS="$TEMP°C   "
