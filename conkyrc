@@ -36,6 +36,9 @@ TEXT
 
 # JSON for i3bar
 [
+# Weather
+{"markup":"pango", "full_text" : "${exec cat /tmp/weather_icon}", "separator" : false, "separator_block_width" : 0, "align" : "center"},
+{"markup":"pango", "full_text" : "${exec /home/avano/.config/i3/weather.sh <city_here> <openweather_api_key_here>}  ", "separator" : false, "separator_block_width" : 0, "align" : "center", "min_width" : "99.99°C  "},
 # CPU
 {"markup":"pango", "full_text" : "<span color='\#7780a1'></span>", "separator" : false, "separator_block_width":0},
 {"markup":"pango", "full_text" : "${cpu}%", "align":"center","color" : \

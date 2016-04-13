@@ -28,6 +28,4 @@ then
         echo "done"
     done
 fi
-killall -SIGUSR1 dunst # pause
 i3lock --24 -c '#FFFFFF' -o '#191d0f' -w '#572020' -l '#3497d4' -e -n -i /tmp/screen.png
-killall -SIGUSR2 dunst # resume
